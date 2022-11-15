@@ -2,7 +2,8 @@
     <div class="col-large push-top" v-if="thread">
 
         <h3>{{ thread.title }}</h3>
-        <PostListViewVue :posts="threadPosts"/>
+        <post-list-view :posts="threadPosts" />
+        <post-editor @save="addPost"/>
     </div>
     <div v-else class="col-full text-center">
         No Thread Found
@@ -12,11 +13,13 @@
 <script>
 
 import sourceData from '../data.json'
-import PostListViewVue from '../components/PostListView';
+import PostListView from '../components/PostListView';
+import PostEditor from '../components/PostEditor';
 
 export default {
     components: {
-        PostListViewVue    
+        PostListView,
+        PostEditor
     },
     props: {
         id: {
@@ -39,7 +42,11 @@ export default {
         }
     },
     methods: {
-
+        addPost({ post }) {
+            post.threadId = this.id
+            this.posts.push(post);
+            this.thread.posts.push(post.id);
+        }
     },
 }
 
