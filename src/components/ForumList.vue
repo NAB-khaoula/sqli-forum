@@ -2,7 +2,13 @@
   <div class="col-ful">
     <div class="forum-list">
       <h2 class="list-title">
-        <a href="#">Forums</a>
+        <router-link
+          v-if="categoryId"
+          :to="{ name: 'CategoryPage', params: { id: categoryId } }"
+        >
+          {{ title }}
+        </router-link>
+        <span v-else> {{ title }}</span>
       </h2>
       <div
         v-for="forum in forums"
@@ -13,7 +19,7 @@
           <router-link :to="{ name: 'ForumPage', params: { id: forum.id } }">
             {{ forum.name }}
           </router-link>
-          <p>{{ forum.description }}</p>
+          <p> {{ forum.description }}</p>
         </div>
         <div class="threads-count">
           <p>
@@ -33,9 +39,12 @@
 <script>
 export default {
   props: {
-    forums: {
-      type: Array,
-      required: true,
+    forums: { type: Array, required: true },
+
+    title: { type: String, default: "Forums" },
+    categoryId: {
+        type: String,
+        required: false
     },
   },
   methods: {

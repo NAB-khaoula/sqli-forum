@@ -4,7 +4,7 @@
       <div class="forum-details">
         <h1>{{ forum.name }}</h1>
         <p class="text-lead">
-          {{ forum.decription }}
+          {{ forum.description }}
         </p>
       </div>
       <a
@@ -40,7 +40,6 @@ export default {
       return sourceData.threads.filter(thread => thread.forumId === this.id);
     }
   },
-  methods: {},
 };
 </script>
 
