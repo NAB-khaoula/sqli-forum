@@ -1,7 +1,7 @@
 <template>
     <div class="col-full text-center">
         <h1>Not Found</h1>
-        <router-link :to="{name: `HomePage`}">&lt;- Back to threads</router-link>
+        <router-link :to="{name: `HomePage`}">&lt;- Back to HomePage</router-link>
     </div>
 </template>
 <script>

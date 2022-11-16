@@ -2,14 +2,13 @@
   <h1>{{ category.name }}</h1>
   <forum-list
     :title="category.name"
-    :forums="getForumsCategory(category)"
+    :forums="getForumsForCategory(category)"
   />
 </template>
 
 <script>
 import ForumList from "../components/ForumList";
 import sourceData from "../data.json";
-
 export default {
   components: {
     ForumList,
@@ -21,7 +20,7 @@ export default {
     },
   },
   computed: {
-    category() {
+      category() {
       return sourceData.categories.find((category) => category.id === this.id);
     },
   },
