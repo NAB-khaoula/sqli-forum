@@ -1,25 +1,22 @@
 <template>
-    <ThreadListView :threads="threads"/>
+    <forum-list :forums="forums" />
 </template>
 
 <script>
-
-import sourceData from '../data.json';
-import ThreadListView from '../components/ThreadListView.vue';
+import sourceData from "../data.json";
+import ForumList from '../components/ForumList'
 
 export default {
     components: {
-        ThreadListView
+        ForumList,
     },
     data() {
         return {
-            threads: sourceData.threads,
+            forums: sourceData.forums,
         };
-    }
-}
-
+    },
+};
 </script>
-
 
 <style scoped>
 
