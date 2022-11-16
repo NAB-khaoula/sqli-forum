@@ -1,9 +1,11 @@
 <template>
   <h1>{{ category.name }}</h1>
+  <router-link :to="{ name: `HomePage` }">&lt;= Back to HomePage</router-link>
   <forum-list
     :title="category.name"
     :forums="getForumsForCategory(category)"
   />
+
 </template>
 
 <script>
