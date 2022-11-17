@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import sourceData from "../data.json";
 import PostListView from "../components/PostListView";
 import PostEditor from "../components/PostEditor";
 
@@ -31,18 +30,18 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      threads: sourceData.threads,
-      posts: sourceData.posts,
-    };
-  },
   computed: {
     thread() {
       return this.threads.find((thread) => thread.id === this.id);
     },
     threadPosts() {
       return this.posts.filter((p) => p.threadId === this.id);
+    },
+    threads() {
+      return this.$store.state.threads;
+    },
+    posts() {
+      return this.$store.state.posts;
     },
   },
   methods: {

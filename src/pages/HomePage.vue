@@ -1,24 +1,21 @@
 <template>
-    <h1>Welcome to the Forum</h1>
-    <category-list :categories="categories" />
+  <h1>Welcome to the Forum</h1>
+  <category-list :categories="categories" />
 </template>
 
 <script>
-import sourceData from "../data.json";
-import CategoryList from '../components/CategoryList'
+import CategoryList from "../components/CategoryList";
 
 export default {
-    components: {
-        CategoryList,
+  components: {
+    CategoryList,
+  },
+  computed: {
+    categories() {
+      return this.$store.state.categories;
     },
-    data() {
-        return {
-            categories: sourceData.categories,
-        };
-    },
+  },
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

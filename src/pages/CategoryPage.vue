@@ -1,6 +1,6 @@
 <template>
   <h1>{{ category.name }}</h1>
-  <router-link :to="{ name: `HomePage` }">&lt;= Back to HomePage</router-link>
+  <router-link :to="{ name: `HomePage` }">&lt;= Back to Home</router-link>
   <forum-list
     :title="category.name"
     :forums="getForumsForCategory(category)"
@@ -10,7 +10,6 @@
 
 <script>
 import ForumList from "../components/ForumList";
-import sourceData from "../data.json";
 export default {
   components: {
     ForumList,
@@ -23,12 +22,12 @@ export default {
   },
   computed: {
       category() {
-      return sourceData.categories.find((category) => category.id === this.id);
+      return this.$store.state.categories.find((category) => category.id === this.id);
     },
   },
   methods: {
     getForumsForCategory(category) {
-      return sourceData.forums.filter(
+      return this.$store.state.forums.filter(
         (forum) => forum.categoryId === category.id
       );
     },
