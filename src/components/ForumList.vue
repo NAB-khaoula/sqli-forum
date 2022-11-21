@@ -19,7 +19,7 @@
           <router-link :to="{ name: 'ForumPage', params: { id: forum.id } }">
             {{ forum.name }}
           </router-link>
-          <p> {{ forum.description }}</p>
+          <p>{{ forum.description }}</p>
         </div>
         <div class="threads-count">
           <p>
@@ -43,8 +43,9 @@ export default {
 
     title: { type: String, default: "Forums" },
     categoryId: {
-        type: String,
-        required: false
+      type: String,
+      required: false,
+      default: "",
     },
   },
   methods: {

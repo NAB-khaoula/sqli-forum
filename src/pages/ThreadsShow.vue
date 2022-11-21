@@ -47,7 +47,7 @@ export default {
   methods: {
     addPost({ post }) {
       post.threadId = this.id;
-      this.$store.dispatch("createPost",  post );
+      this.$store.dispatch("createPost", post);
     },
   },
 };

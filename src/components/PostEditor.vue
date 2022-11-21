@@ -22,6 +22,7 @@
 
 <script>
 export default {
+  emits: ["save"],
   data() {
     return {
       text: "",

@@ -49,7 +49,6 @@
 </template>
 
 <script>
-
 export default {
   props: {
     threads: {
@@ -57,13 +56,13 @@ export default {
       required: true,
     },
   },
-    computed: {
-        posts() {
-          return this.$store.state.posts  
-        },
-        users() {
-            return this.$store.state.users;
-        }
+  computed: {
+    posts() {
+      return this.$store.state.posts;
+    },
+    users() {
+      return this.$store.state.users;
+    },
   },
   methods: {
     postById(postId) {

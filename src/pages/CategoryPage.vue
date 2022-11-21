@@ -1,11 +1,12 @@
 <template>
   <h1>{{ category.name }}</h1>
-  <router-link :to="{ name: `HomePage` }">&lt;= Back to Home</router-link>
+  <router-link :to="{ name: `HomePage` }">
+    &lt;= Back to Home
+  </router-link>
   <forum-list
     :title="category.name"
     :forums="getForumsForCategory(category)"
   />
-
 </template>
 
 <script>
@@ -21,8 +22,10 @@ export default {
     },
   },
   computed: {
-      category() {
-      return this.$store.state.categories.find((category) => category.id === this.id);
+    category() {
+      return this.$store.state.categories.find(
+        (category) => category.id === this.id
+      );
     },
   },
   methods: {
