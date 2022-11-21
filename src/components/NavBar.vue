@@ -20,16 +20,16 @@
     <nav class="navbar">
       <ul>
         <li class="navbar-user">
-          <a href="#">
+          <router-link :to="{name: `ProfilePage`}">
             <img
-              src="../assets/images/professionnelPhoto.jpg"
-              alt="avatar"
+              :src="authUser.avatar"
+              :alt="authUser.names"
               class="avatar-small"
             >
             <span>
-              Khaoula NABOUSSI
+              {{ authUser.name }}
             </span>
-          </a>
+          </router-link>
           <div id="user-dropdown">
             <div class="triangle-drop" />
             <ul class="dropdown-menu">
@@ -48,7 +48,12 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+export default {
+  computed: {
+    ...mapGetters(["authUser"]),
+  },
+};
 </script>
 
 <style></style>
