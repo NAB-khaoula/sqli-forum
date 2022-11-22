@@ -48,12 +48,17 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { computed } from '@vue/reactivity';
+import { useStore } from 'vuex';
 export default {
-  computed: {
-    ...mapGetters(["authUser"]),
-  },
-};
+
+  setup() {
+    const store = useStore();
+    const authUser = computed(() => store.getters.authUser)
+    return { authUser }
+  }
+}
 </script>
+
 
 <style></style>

@@ -6,12 +6,15 @@
 </template>
 
 <!-- Composition API -->
-<!-- <script >
+<script >
 import { computed } from '@vue/reactivity';
 import { useStore } from 'vuex';
 import CategoryList from '@/components/CategoryList';
 export default {
   name: "HOME",
+  components: {
+    CategoryList
+  },
   setup() {
     const store = useStore();
     const categories = computed(() => store.state.categories);
@@ -19,22 +22,8 @@ export default {
     return { categories };
   },
 };
-</script> -->
-
-<!-- Options API -->
-<script>
-import CategoryList from "../components/CategoryList";
-
-export default {
-  components: {
-    CategoryList,
-  },
-  computed: {
-    categories() {
-      return this.$store.state.categories;
-    },
-  },
-};
 </script>
+
+
 
 <style scoped></style>
