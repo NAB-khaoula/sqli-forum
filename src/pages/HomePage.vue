@@ -2,22 +2,17 @@
   <h1 class="push-top">
     Welcome to the Forum
   </h1>
-  <category-list :categories="categories" />
+  <CategoryList :categories="categories" />
 </template>
 
-<script>
-import CategoryList from "../components/CategoryList";
+<!-- Composition API -->
+<script setup>
+import { computed } from "@vue/reactivity";
+import { useStore } from "vuex";
+import CategoryList from "@/components/CategoryList";
 
-export default {
-  components: {
-    CategoryList,
-  },
-  computed: {
-    categories() {
-      return this.$store.state.categories;
-    },
-  },
-};
+const store = useStore();
+const categories = computed(() => store.state.categories);
 </script>
 
 <style scoped></style>

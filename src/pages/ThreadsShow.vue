@@ -15,6 +15,21 @@
   </div>
 </template>
 
+<!-- composition API -->
+
+<!-- <script setup>
+import PostListView from "@/components/PostListView";
+import PostEditor from "@/components/PostEditor";
+import { useStore } from "vuex";
+
+const store = useStore();
+const threads = computed(() => store.state.threads);
+const posts = computed(() => store.state.posts);
+const thread = computed(() => threads.find((thread) => thread.id === id));
+
+</script> -->
+
+<!-- Options API -->
 <script>
 import PostListView from "../components/PostListView";
 import PostEditor from "../components/PostEditor";
