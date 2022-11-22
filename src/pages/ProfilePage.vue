@@ -2,9 +2,8 @@
   <div class="container">
     <div class="flex-grid">
       <div class="col-3 push-top">
-        <user-profile-card
-          :user="user"
-        />
+        <user-profile-card :user="user" />
+        <user-profile-editor :user="user" />
         <p class="text-xsmall text-faded text-center">
           Member since june ...
         </p>
@@ -30,13 +29,16 @@
 
 <script>
 import PostListView from "../components/PostListView";
-import UserProfileCard from "@/components/UserProfileCard.vue";
+import UserProfileCard from "@/components/UserProfileCard";
+import UserProfileEditor from "@/components/UserProfileEditor";
+
 import { mapGetters } from "vuex";
 
 export default {
   components: {
     PostListView,
     UserProfileCard,
+    UserProfileEditor,
   },
   computed: {
     ...mapGetters({ user: "authUser" }),
