@@ -37,25 +37,20 @@
 </template>
 
 <script>
+import { ref } from 'vue';
 export default {
   props: {
     forums: { type: Array, required: true },
-
     title: { type: String, default: "Forums" },
-    categoryId: {
-      type: String,
-      required: false,
-      default: "",
-    },
+    categoryId: { type: String, required: false, default: "" },
   },
-  methods: {
-    forumThreads(forum) {
-      if (forum.threads?.length) {
+  setup() {
+    const forumThreads = ref((forum) => {
+      if (forum.threads?.length)
         return forum.threads.length > 1 ? "threads" : "thread";
-      } else {
-        return "no thread";
-      }
-    },
+      return "no thread";
+    });
+    return {forumThreads}
   },
 };
 </script>
