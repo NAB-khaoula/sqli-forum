@@ -6,13 +6,35 @@
 </template>
 
 <!-- Composition API -->
-<script setup>
-import { computed } from "@vue/reactivity";
-import { useStore } from "vuex";
-import CategoryList from "@/components/CategoryList";
+<!-- <script >
+import { computed } from '@vue/reactivity';
+import { useStore } from 'vuex';
+import CategoryList from '@/components/CategoryList';
+export default {
+  name: "HOME",
+  setup() {
+    const store = useStore();
+    const categories = computed(() => store.state.categories);
 
-const store = useStore();
-const categories = computed(() => store.state.categories);
+    return { categories };
+  },
+};
+</script> -->
+
+<!-- Options API -->
+<script>
+import CategoryList from "../components/CategoryList";
+
+export default {
+  components: {
+    CategoryList,
+  },
+  computed: {
+    categories() {
+      return this.$store.state.categories;
+    },
+  },
+};
 </script>
 
 <style scoped></style>
