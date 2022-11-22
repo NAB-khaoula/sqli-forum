@@ -9,22 +9,18 @@
 </template>
 
 <script>
-import ForumList from "./ForumList.vue";
-
+import { ref } from "vue";
+import { useStore } from "vuex";
+import ForumList from "./ForumList";
 export default {
   components: { ForumList },
-  props: {
-    categories: {
-      required: true,
-      type: Array,
-    },
-  },
-  methods: {
-    getForumsForCategory(category) {
-      return this.$store.state.forums.filter(
-        (forum) => forum.categoryId === category.id
-      );
-    },
+  props: { categories: { required: true, type: Array } },
+  setup() {
+    const store = useStore();
+    const getForumsForCategory = ref((category) =>
+      store.state.forums.filter((forum) => forum.categoryId === category.id)
+    );
+    return {getForumsForCategory}
   },
 };
 </script>
