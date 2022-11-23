@@ -33,6 +33,8 @@ const thread = computed(() => threads.find((thread) => thread.id === id));
 <script>
 import PostListView from "../components/PostListView";
 import PostEditor from "../components/PostEditor";
+import { useStore } from "vuex";
+import { computed } from "@vue/reactivity";
 
 export default {
   components: {
@@ -45,26 +47,38 @@ export default {
       required: true,
     },
   },
-  computed: {
-    thread() {
-      return this.threads.find((thread) => thread.id === this.id);
-    },
-    threadPosts() {
-      return this.posts.filter((p) => p.threadId === this.id);
-    },
-    threads() {
-      return this.$store.state.threads;
-    },
-    posts() {
-      return this.$store.state.posts;
-    },
-  },
-  methods: {
-    addPost({ post }) {
-      post.threadId = this.id;
-      this.$store.dispatch("createPost", post);
-    },
-  },
+  setup(props) {
+    const store = useStore();
+    const threads = computed(() => store.state.threads);
+    const posts = computed(() => store.state.posts);
+    const thread = computed(() => threads.value.find((thread) => thread.id == props.id));
+    const threadPosts = computed(() => posts.value.filter(p => p.threadId === props.id));
+    const addPost = ({ post }) => {
+      post.threadId = props.id;
+      store.dispatch('createPost', post);
+    }
+    return {threads, posts, thread, threadPosts, addPost}
+  }
+  // computed: {
+  //   thread() {
+  //     return this.threads.find((thread) => thread.id === this.id);
+  //   },
+  //   threadPosts() {
+  //     return this.posts.filter((p) => p.threadId === this.id);
+  //   },
+  //   threads() {
+  //     return this.$store.state.threads;
+  //   },
+  //   posts() {
+  //     return this.$store.state.posts;
+  //   },
+  // },
+  // methods: {
+  //   addPost({ post }) {
+  //     post.threadId = this.id;
+  //     this.$store.dispatch("createPost", post);
+  //   },
+  // },
 };
 </script>
 

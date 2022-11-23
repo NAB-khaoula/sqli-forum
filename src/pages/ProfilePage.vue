@@ -32,7 +32,8 @@ import PostListView from "../components/PostListView";
 import UserProfileCard from "@/components/UserProfileCard";
 import UserProfileEditor from "@/components/UserProfileEditor";
 
-import { mapGetters } from "vuex";
+import { useStore } from "vuex";
+import { ref } from "vue";
 
 export default {
   components: {
@@ -40,9 +41,11 @@ export default {
     UserProfileCard,
     UserProfileEditor,
   },
-  computed: {
-    ...mapGetters({ user: "authUser" }),
-  },
+  setup() {
+    const store = useStore();
+    const user = ref(store.getters.authUser);
+    return {user}
+  }
 };
 </script>
 

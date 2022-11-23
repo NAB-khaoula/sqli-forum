@@ -10,6 +10,9 @@
 </template>
 
 <script>
+import { computed } from "@vue/reactivity";
+import { ref } from "vue";
+import { useStore } from "vuex";
 import ForumList from "../components/ForumList";
 export default {
   components: {
@@ -21,21 +24,15 @@ export default {
       type: String,
     },
   },
-  computed: {
-    category() {
-      return this.$store.state.categories.find(
-        (category) => category.id === this.id
-      );
-    },
-  },
-  methods: {
-    getForumsForCategory(category) {
-      return this.$store.state.forums.filter(
-        (forum) => forum.categoryId === category.id
-      );
-    },
-  },
+  setup(props) {
+    const store = useStore();
+    const category = computed(() => store.state.categories.find(category => category.id === props.id))
+    const getForumsForCategory = ref((category) => store.state.forums.filter(forum => forum.categoryId === category.id));
+    return {category, getForumsForCategory}
+  }
 };
 </script>
+
+
 
 <style></style>

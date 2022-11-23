@@ -49,30 +49,24 @@
 </template>
 
 <script>
+import { computed } from '@vue/reactivity';
+import { useStore } from 'vuex';
+import { ref } from 'vue';
+
 export default {
   props: {
-    threads: {
-      type: Array,
-      required: true,
-    },
+    threads: { type: Array, required: true },
   },
-  computed: {
-    posts() {
-      return this.$store.state.posts;
-    },
-    users() {
-      return this.$store.state.users;
-    },
-  },
-  methods: {
-    postById(postId) {
-      return this.posts.find((p) => p.id === postId);
-    },
-    userById(userId) {
-      return this.users.find((u) => u.id === userId);
-    },
-  },
+  setup() {
+    const store = useStore();
+    const posts = computed(() => store.state.posts);
+    const users = computed(() => store.state.users);
+    const postById = ref((postId) => posts.value.find(p => p.id === postId));
+    const userById = ref((userId) => users.value.find(u => u.id === userId));
+    return {postById, userById}
+  }
 };
 </script>
+
 
 <style scoped></style>

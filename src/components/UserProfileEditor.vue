@@ -95,27 +95,20 @@
 </template>
 
 <script>
+import { useStore } from 'vuex';
+
 export default {
   props: {
-    user: {
-      type: Object,
-      required: true,
+    user: { type: Object, required: true },
     },
-  },
-  data() {
-    return {
-      activeUser: {},
-    };
-  },
-  beforeCreate() {
-    this.activeUser = { ...this.user };
-  },
-  methods: {
-    save() {
-      this.$store.dispatch("updateUser", { ...this.activeUser });
-    },
-  },
+    setup(props) {
+        const store = useStore();
+        const activeUser = { ...props.user }
+        const save = () => store.dispatch('updateUser', activeUser);
+        return {activeUser, save}
+  }
 };
 </script>
+
 
 <style></style>

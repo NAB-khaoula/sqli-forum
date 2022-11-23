@@ -37,7 +37,10 @@
   </div>
 </template>
 
+
 <script>
+import { ref } from 'vue';
+import { useStore } from 'vuex';
 export default {
   props: {
     posts: {
@@ -45,17 +48,14 @@ export default {
       type: Array,
     },
   },
-  data() {
-    return {
-      users: this.$store.state.users,
-    };
-  },
-  methods: {
-    userById(userId) {
-      return this.users.find((u) => u.id === userId);
-    },
-  },
-};
+  setup() {
+    const store = useStore();
+    const users = ref(store.state.users);
+    const userById = (userId) => users.value.find((u) => u.id === userId)
+    return { users, userById}
+  }
+}
 </script>
+
 
 <style></style>

@@ -21,25 +21,25 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+
 export default {
-  emits: ["save"],
-  data() {
-    return {
-      text: "",
-    };
-  },
-  methods: {
-    save() {
+  emits: ['save'],
+  setup(_, context) {
+    const text = ref('');
+    const save = () => {
       const post = {
-        text: this.text,
+        text: text.value,
         publishedAt: Math.floor(Date.now() / 1000),
         userId: "ALXhxjwgY9PinwNGHpfai6OWyDu2",
       };
-      this.text = "";
-      this.$emit("save", { post });
-    },
-  },
-};
+      text.value = "",
+      context.emit("save", { post })
+    }
+    return {text, save}
+  }
+}
 </script>
+
 
 <style></style>
