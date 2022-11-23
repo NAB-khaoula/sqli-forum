@@ -59,26 +59,6 @@ export default {
     }
     return {threads, posts, thread, threadPosts, addPost}
   }
-  // computed: {
-  //   thread() {
-  //     return this.threads.find((thread) => thread.id === this.id);
-  //   },
-  //   threadPosts() {
-  //     return this.posts.filter((p) => p.threadId === this.id);
-  //   },
-  //   threads() {
-  //     return this.$store.state.threads;
-  //   },
-  //   posts() {
-  //     return this.$store.state.posts;
-  //   },
-  // },
-  // methods: {
-  //   addPost({ post }) {
-  //     post.threadId = this.id;
-  //     this.$store.dispatch("createPost", post);
-  //   },
-  // },
 };
 </script>
 
