@@ -22,16 +22,19 @@
 
 <script>
 import { ref } from 'vue';
+// import { useStore } from 'vuex';
 
 export default {
   emits: ['save'],
   setup(_, context) {
+    // const store = useStore();
     const text = ref('');
     const save = () => {
       const post = {
         text: text.value,
         publishedAt: Math.floor(Date.now() / 1000),
         userId: "ALXhxjwgY9PinwNGHpfai6OWyDu2",
+        // userId : store.state.getters.id,
       };
       text.value = "",
       context.emit("save", { post })

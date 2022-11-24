@@ -18,7 +18,7 @@ export default {
   setup() {
     const store = useStore();
     const getForumsForCategory = ref((category) =>
-      store.state.forums.filter((forum) => forum.categoryId === category.id)
+      store.state.jsonData.forums.filter((forum) => forum.categoryId === category.id)
     );
     return {getForumsForCategory}
   },

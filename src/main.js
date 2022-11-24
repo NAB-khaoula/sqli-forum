@@ -3,6 +3,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router';
 import store from './store'
+import firebase from "firebase/compat/app";
+import config from './config/firebaseConfig'
 
 const app = createApp(App);
 
@@ -15,6 +17,8 @@ requireComponent.keys().forEach(fileName => {
     let baseComponentName = baseComponentConfig.name || fileName.replace(/^.+\//, "").replace(".vue", "");
     app.component(baseComponentName, baseComponentConfig);
 });
+
+firebase.initializeApp(config)
 
 app.use(router);
 app.use(store);

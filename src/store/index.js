@@ -1,24 +1,24 @@
 import { createStore } from 'vuex'
+import actions from './actions'
 import sourceData from '../data.json'
+import mutations from './mutations'
 
 export default createStore({
-    state: {...sourceData, authId: '38St7Q8Zi2N1SPa5ahzssq9kbyp1'},
-    actions: {
-        createPost(context, post) {
-            post.id = "abcdefghij" + Math.random();
-            context.commit('setPost', { post })
-            context.commit("appendPostToThread", {
-                postId: post.id,
-                threadId: post.threadId
-            })
-        },
-        updateUser({ commit }, { user, userId }) {
-            commit('setUser', {user, userId: user.id})
+    // state: {...sourceData, authId: '38St7Q8Zi2N1SPa5ahzssq9kbyp1'},
+    state() {
+        return {
+            jsonData: {
+                ...sourceData,
+                authId: '38St7Q8Zi2N1SPa5ahzssq9kbyp1',
+                users: []
+            }
         }
     },
+    actions,
     getters: {
         authUser: (state) => {
-            const user = state.users.find(user => user.id === state.authId)
+            const user = state.jsonData.users.find(user => user.id === state.authId)
+            console.log(state.users)
             if (!user) return null;
             return {
                 ...user,
@@ -37,17 +37,5 @@ export default createStore({
             }
         }
     },
-    mutations: {
-        setPost(state, { post }) {
-            state.posts.push(post);
-        },
-        setUser(state, {user, userId}) {
-            const userIndex = state.users.findIndex((user) => user.id === userId)
-            state.users[userIndex] = user;
-        },
-        appendPostToThread(state, {postId, threadId}) {
-            const thread = state.threads.find((thread) => thread.id === threadId)
-            thread.posts.push(postId);
-        }
-    }
+    mutations,
 })

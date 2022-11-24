@@ -22,12 +22,12 @@
         <li class="navbar-user">
           <router-link :to="{name: `ProfilePage`}">
             <img
-              :src="authUser.avatar"
-              :alt="authUser.names"
+              :src="authUser?.avatar"
+              :alt="authUser?.name"
               class="avatar-small"
             >
             <span>
-              {{ authUser.name }}
+              {{ authUser?.name }}
             </span>
           </router-link>
           <div id="user-dropdown">
@@ -54,6 +54,7 @@ export default {
 
   setup() {
     const store = useStore();
+    console.log('user', store.getters.authUser)
     const authUser = computed(() => store.getters.authUser)
     return { authUser }
   }

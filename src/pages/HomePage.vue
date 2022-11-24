@@ -17,7 +17,7 @@ export default {
   },
   setup() {
     const store = useStore();
-    const categories = computed(() => store.state.categories);
+    const categories = computed(() => store.state.jsonData.categories);
 
     return { categories };
   },
