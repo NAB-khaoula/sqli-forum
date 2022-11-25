@@ -17,8 +17,9 @@ export default createStore({
     actions,
     getters: {
         authUser: (state) => {
-            const user = state.jsonData.users.find(user => user.id === state.authId)
-            console.log(state.users)
+            const user = state.jsonData.users.find(user => {
+                return user.id === state.jsonData.authId
+            })
             if (!user) return null;
             return {
                 ...user,

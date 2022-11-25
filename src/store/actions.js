@@ -7,7 +7,6 @@ export default {
         let users = []
         await usersCollection.onSnapshot(snapshot => {
             snapshot.docs.map((doc) => {
-                console.log('id',doc.id)
                 users.push({ id: doc.id, ...doc.data() })
                 context.commit('fetchUsers', users);
             })

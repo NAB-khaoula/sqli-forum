@@ -54,7 +54,6 @@ export default {
 
   setup() {
     const store = useStore();
-    console.log('user', store.getters.authUser)
     const authUser = computed(() => store.getters.authUser)
     return { authUser }
   }

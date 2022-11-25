@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { useStore } from "vuex";
 import NavBar from "./components/NavBar";
 
 export default {
@@ -17,6 +18,15 @@ export default {
   // }
   components: {
     NavBar,
+  },
+  setup() {
+    const store = useStore();
+    let storeActions = [
+      "fetchUsersFromDB"
+    ];
+    storeActions.forEach((action) => {
+      store.dispatch(action);
+    });
   },
 };
 </script>
