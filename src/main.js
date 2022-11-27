@@ -5,6 +5,7 @@ import router from './router';
 import store from './store'
 import firebase from "firebase/compat/app";
 import config from './config/firebaseConfig'
+import { getAuth } from 'firebase/auth';
 
 const app = createApp(App);
 
@@ -18,7 +19,9 @@ requireComponent.keys().forEach(fileName => {
     app.component(baseComponentName, baseComponentConfig);
 });
 
-firebase.initializeApp(config)
+// firebase.initializeApp(config)
+const test = firebase.initializeApp(config)
+export const auth = getAuth(test);
 
 app.use(router);
 app.use(store);

@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 import actions from './actions'
 import sourceData from '../data.json'
 import mutations from './mutations'
+import getters from './getters'
 
 export default createStore({
     // state: {...sourceData, authId: '38St7Q8Zi2N1SPa5ahzssq9kbyp1'},
@@ -11,32 +12,14 @@ export default createStore({
                 ...sourceData,
                 authId: '38St7Q8Zi2N1SPa5ahzssq9kbyp1',
                 users: []
-            }
+            },
+            user: {
+                loggedIn: false,
+                data: null
+            },
         }
     },
     actions,
-    getters: {
-        authUser: (state) => {
-            const user = state.jsonData.users.find(user => {
-                return user.id === state.jsonData.authId
-            })
-            if (!user) return null;
-            return {
-                ...user,
-                get posts() {
-                    return state.posts.filter((post) => post.userId === user.id);
-                },
-                get postsCount() {
-                    return this.posts.length;
-                },
-                get threads() {
-                    return state.threads.filter((thread) => thread.userId === user.id);
-                },
-                get threadsCount() {
-                    return this.threads.length;
-                },
-            }
-        }
-    },
+    getters,
     mutations,
 })

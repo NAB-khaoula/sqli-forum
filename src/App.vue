@@ -1,30 +1,22 @@
 <template>
-  <!-- instead of importing component statically, we can use router-view to render the proper page of that route. -->
-  <!-- <HomePage></HomePage> -->
-  <nav-bar />
-  <router-view />
+  <layout-page> 
+    <router-view />
+  </layout-page>
 </template>
 
 <script>
 import { useStore } from "vuex";
-import NavBar from "./components/NavBar";
+import LayoutPage from "./layout/LayoutPage";
 
 export default {
   name: "App",
-  // components: {
-  // HomePage,
-  // ThreadsShowPage,
-  // ThreadListView
-  // }
   components: {
-    NavBar,
+    LayoutPage,
   },
   setup() {
     const store = useStore();
-    let storeActions = [
-      "fetchUsersFromDB"
-    ];
-    storeActions.forEach((action) => {
+    let fetchUser = ["fetchUsersFromDB"];
+    fetchUser.forEach((action) => {
       store.dispatch(action);
     });
   },
