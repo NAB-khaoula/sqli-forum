@@ -53,12 +53,12 @@
 </template>
 
 <script>
-import { computed } from "@vue/reactivity";
+import { computed, ref, watch } from "vue";
 import { useStore } from "vuex";
 export default {
   setup() {
     const store = useStore();
-    const isLoggedIn = store.state.isLoggedIn;
+    const isLoggedIn = ref(store.state.isLoggedIn);
     const authUser = computed(() => store.getters.authUser);
     return { isLoggedIn, authUser };
   },

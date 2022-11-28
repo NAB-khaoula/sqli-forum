@@ -21,7 +21,7 @@
             </router-link>
           </p>
           <p class="text-faded text-xsmall">
-            By <a>{{ userById(thread.userId).name }}</a>,
+            By <a>{{ userById(thread.userId)?.name }}</a>,
             <app-date :time-stamp="thread.publishedAt" />
           </p>
         </div>
@@ -30,7 +30,7 @@
             {{ thread.posts.length }} replies
           </p>
           <img
-            :src="userById(thread.userId).avatar"
+            :src="userById(thread.userId)?.avatar"
             alt="user avatar"
             class="avatar-medium"
           >

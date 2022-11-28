@@ -98,10 +98,10 @@ export default {
             password: password.value,
           })
           .then(() => {
+            alert('You logged in successfully')
             router.push("/");
           });
       } catch (err) {
-        console.log("error", err.message);
         error.value = err.message;
       }
     };
