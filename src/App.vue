@@ -1,23 +1,22 @@
 <template>
-  <layout-page> 
-    <router-view />
-  </layout-page>
+  <nav-bar />
+  <router-view />
 </template>
 
 <script>
 import { useStore } from "vuex";
-import LayoutPage from "./layout/LayoutPage";
+import NavBar from "./components/NavBar";
 
 export default {
   name: "App",
   components: {
-    LayoutPage,
+    NavBar,
   },
   setup() {
     const store = useStore();
-    let fetchUser = ["fetchUsersFromDB"];
-    fetchUser.forEach((action) => {
-      store.dispatch(action);
+    let fetchUsers = ["fetchUsersFromDB"];
+    fetchUsers.forEach((user) => {
+      store.dispatch(user);
     });
   },
 };

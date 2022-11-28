@@ -111,13 +111,15 @@ export default {
 
     const Register = async () => {
       try {
-        await store.dispatch("register", {
-          auth: getAuth(),
-          email: email.value,
-          password: password.value,
-          name: name.value,
-        });
-        router.push("/");
+        await store
+          .dispatch("register", {
+            auth: getAuth(),
+            email: email.value,
+            password: password.value,
+          })
+          .then(() => {
+            router.push("/");
+          });
       } catch (err) {
         error.value = err.message;
       }

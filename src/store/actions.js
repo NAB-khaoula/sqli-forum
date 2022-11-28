@@ -4,21 +4,25 @@ import "firebase/compat/firestore";
 
 export default {
     async register(context, { auth, email, password }) {
-        createUserWithEmailAndPassword(auth, email, password).then((response) => {
-            if (response)
-            context.commit('SET_USER', response.user);
+        await createUserWithEmailAndPassword(auth, email, password).then((response) => {
+            if (response) {
+                context.commit('SET_USER', response.user);
+            }
             else
                 throw new Error('Unable to register user')
         })
     },
 
-    async logIn(context, { email, password }) {
-        const response = await signInWithEmailAndPassword(auth, email, password)
-        if (response) {
-            context.commit('SET_USER', response.user)
-        } else {
-            throw new Error('login failed')
-        }
+    async logIn(context, {auth, email, password }) {
+        await signInWithEmailAndPassword(auth, email, password).then((response) => {
+            if (response) {
+                context.commit('SET_USER', response.user);
+            }
+            else {
+                console.log('catch');
+                throw new Error('login failed')
+            }
+        })
     },
 
     async logOut(context) {
@@ -30,7 +34,7 @@ export default {
         context.commit("SET_LOGGED_IN", user !== null);
         if (user) {
             context.commit("SET_USER", {
-                displayName: user.displayName,
+                name: user.displayName,
                 email: user.email
             });
         } else {

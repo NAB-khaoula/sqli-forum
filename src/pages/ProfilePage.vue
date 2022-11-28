@@ -17,7 +17,7 @@
       </div>
       <div class="col-7 push-top">
         <div class="profile-header">
-          <span class="text-lead">{{ user.name }} recent activity</span>
+          <span class="text-lead">{{ user?.name }} recent activity</span>
           <a href="#">See only threads?</a>
         </div>
         <hr>
@@ -44,6 +44,7 @@ export default {
   setup() {
     const store = useStore();
     const user = ref(store.getters.authUser);
+    console.log('user', user.value)
     return {user}
   }
 };

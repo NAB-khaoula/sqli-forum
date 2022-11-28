@@ -5,18 +5,13 @@ import mutations from './mutations'
 import getters from './getters'
 
 export default createStore({
-    // state: {...sourceData, authId: '38St7Q8Zi2N1SPa5ahzssq9kbyp1'},
     state() {
         return {
-            jsonData: {
-                ...sourceData,
-                authId: '38St7Q8Zi2N1SPa5ahzssq9kbyp1',
-                users: []
-            },
-            user: {
-                loggedIn: false,
-                data: null
-            },
+            ...sourceData,
+            authId: 'ALXhxjwgY9PinwNGHpfai6OWyDu2',
+            user: {},
+            users: [],
+            isLoggedIn: false,
         }
     },
     actions,

@@ -1,7 +1,7 @@
 export default {
     authUser: (state) => {
-            const user = state.jsonData.users.find(user => {
-                return user.id === state.jsonData.authId
+            const user = state.users.find(user => {
+                return user.id === state.authId
             })
             if (!user) return null;
             return {

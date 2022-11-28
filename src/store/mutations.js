@@ -1,12 +1,10 @@
 export default {
-    SET_LOGGED_IN(state, value) {
-        state.user.loggedIn = value;
-    },
     SET_USER(state, data) {
-        state.user.data = data;
+        state.isLoggedIn = true;
+        state.user = data;
     },
     fetchUsers(state, users) {
-        state.jsonData.users.push(...users);
+        state.users.push(...users);
     },
     setPost(state, { post }) {
         state.posts.push(post);
