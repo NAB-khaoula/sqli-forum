@@ -10,6 +10,7 @@ const config = {
 };
 
 export default config
+
 // Initialize Firebase
 
 // const firebaseApp = firebase.initializeApp(config)
