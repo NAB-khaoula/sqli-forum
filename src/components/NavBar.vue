@@ -34,17 +34,13 @@
       <ul v-else>
         <li class="navbar-user">
           <router-link :to="{ name: `Login` }">
-            <button>
-              Login
-            </button>
+            <button>Login</button>
           </router-link>
         </li>
         <span />
         <li class="navbar-user">
           <router-link :to="{ name: `Register` }">
-            <button>
-              Register
-            </button>
+            <button>Register</button>
           </router-link>
         </li>
       </ul>
@@ -57,9 +53,13 @@ import { computed, ref, watch } from "vue";
 import { useStore } from "vuex";
 export default {
   setup() {
-    const store = useStore();
-    const isLoggedIn = ref(store.state.isLoggedIn);
-    const authUser = computed(() => store.getters.authUser);
+    let store = useStore();
+    let isLoggedIn = ref(store.state.isLoggedIn);
+    let authUser = computed(() => store.getters.authUser);
+    store.watch((_, getters) => {
+      isLoggedIn.value = getters.isLoggedIn
+    })
+
     return { isLoggedIn, authUser };
   },
 };

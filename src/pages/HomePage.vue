@@ -18,8 +18,9 @@ export default {
   setup() {
     const store = useStore();
     const categories = computed(() => store.state.categories);
+    const isLoggedIn = computed(() => store.state.isLoggedIn);
 
-    return { categories };
+    return { categories, isLoggedIn };
   },
 };
 </script>
