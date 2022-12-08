@@ -3,6 +3,9 @@ export default {
         state.isLoggedIn = true;
         state.user = data;
     },
+    LoggedIn(state, loggedIn) {
+        state.isLoggedIn = loggedIn;  
+    },
     fetchUsers(state, users) {
         state.users.push(...users);
     },

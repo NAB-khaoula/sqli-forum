@@ -77,7 +77,9 @@
 import { ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-import { getAuth } from "@firebase/auth";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth'
+
 
 export default {
   name: "LoginComponent",
@@ -89,22 +91,33 @@ export default {
     const store = useStore();
     const router = useRouter();
 
-    const Login = async () => {
-      try {
-        await store
-          .dispatch("logIn", {
-            auth: getAuth(),
-            email: email.value,
-            password: password.value,
-          })
-          .then(() => {
-            alert('You logged in successfully')
-            router.push("/");
-          });
-      } catch (err) {
-        error.value = err.message;
-      }
-    };
+    // const Login = async () => {
+    //   try {
+    //     await store
+    //       .dispatch("logIn", {
+    //         auth: getAuth(),
+    //         email: email.value,
+    //         password: password.value,
+    //       })
+    //       .then(() => {
+    //         alert('You logged in successfully')
+    //         router.push("/");
+    //       });
+    //   } catch (err) {
+    //     error.value = err.message;
+    //   }
+    // };
+    const Login = () => {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email.value, password.value)
+        .then(() => {
+          store.dispatch('logIn', {loggedIn: true})
+          alert('You logged in successfully')
+          router.push('/')
+        })
+        .catch(error => alert(error));
+    }
     return { Login, email, password, error };
   },
 };

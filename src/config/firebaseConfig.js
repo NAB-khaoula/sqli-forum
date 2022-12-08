@@ -11,30 +11,3 @@ const config = {
 
 export default config
 
-// Initialize Firebase
-
-// const firebaseApp = firebase.initializeApp(config)
-
-// const db = firebaseApp.firestore();
-// export const usersCollection = db.collection('users');
-
-// export const createUser = user => usersCollection.add(user);
-
-// export const getUser = async id => {
-//     const user = await usersCollection.doc(id).get();
-//     return user.exist() ? user.data() : null;
-// }
-
-// export const updateUser = async (id, user) => {
-//     return usersCollection.doc(id).update(user);
-// }
-
-// export const useLoadUsers = () => {
-//   const users = ref([])
-//   const close = usersCollection.onSnapshot(snapshot => {
-//     users.value = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
-//   })
-//   onUnmounted(close)
-//   return users
-// }
-

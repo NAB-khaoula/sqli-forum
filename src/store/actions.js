@@ -13,16 +13,9 @@ export default {
         })
     },
 
-    async logIn(context, {auth, email, password }) {
-        await signInWithEmailAndPassword(auth, email, password).then((response) => {
-            if (response) {
-                context.commit('SET_USER', response.user);
-            }
-            else {
-                console.log('catch');
-                throw new Error('login failed')
-            }
-        })
+    async logIn(context, { loggedIn }) {
+        //TODO - Set The user from Registration
+        context.commit('LoggedIn', loggedIn)
     },
 
     async logOut(context) {

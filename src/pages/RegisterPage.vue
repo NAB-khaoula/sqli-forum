@@ -97,7 +97,8 @@
 import { ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-import { getAuth } from "@firebase/auth";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
 export default {
   setup() {
@@ -109,21 +110,31 @@ export default {
     const store = useStore();
     const router = useRouter();
 
-    const Register = async () => {
-      try {
-        await store
-          .dispatch("register", {
-            auth: getAuth(),
-            email: email.value,
-            password: password.value,
-          })
-          .then(() => {
-            alert('You logged in successfully')
-            router.push("/");
-          });
-      } catch (err) {
-        error.value = err.message;
-      }
+    // const Register = async () => {
+    //   try {
+    //     await store
+    //       .dispatch("register", {
+    //         auth: getAuth(),
+    //         email: email.value,
+    //         password: password.value,
+    //       })
+    //       .then(() => {
+    //         alert('You logged in successfully')
+    //         router.push("/");
+    //       });
+    //   } catch (err) {
+    //     error.value = err.message;
+    //   }
+    // };
+    const Register = () => {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email.value, password.value)
+        .then(() => {
+          alert("You logged in successfully")
+          router.push('/')
+        })
+        .catch((error) => alert(error));
     };
 
     return { Register, name, email, password, error };

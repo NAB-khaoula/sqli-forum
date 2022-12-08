@@ -6,6 +6,11 @@
 <script>
 import { useStore } from "vuex";
 import NavBar from "./components/NavBar";
+import { onBeforeMount } from "vue";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth'
+import router from "./router";
+
 
 export default {
   name: "App",
@@ -14,10 +19,18 @@ export default {
   },
   setup() {
     const store = useStore();
-    let fetchUsers = ["fetchUsersFromDB"];
-    fetchUsers.forEach((user) => {
-      store.dispatch(user);
-    });
+    onBeforeMount(() => {
+      // let fetchUsers = ["fetchUsersFromDB"];
+      // fetchUsers.forEach((user) => {
+      //   store.dispatch(user);
+      // });
+      firebase.auth().onAuthStateChanged((user) => {
+        if (!user)
+            router.push('/login')
+        else if (router.path == '/login' || route.path == "/register")
+          router.push('/')
+      })
+    })
   },
 };
 </script>
