@@ -20,7 +20,7 @@ requireComponent.keys().forEach(fileName => {
 });
 
 // firebase.initializeApp(config)
-firebase.initializeApp(config)
+const test = firebase.initializeApp(config)
 export const auth = getAuth(test);
 
 app.use(router);

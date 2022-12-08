@@ -1,54 +1,46 @@
-import { createRouter, createWebHistory, routerKey } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
-import HomePage from "../pages/HomePage";
-import ThreadsShow from "../pages/ThreadsShow";
-import NotFound from "../pages/NotFound";
-import ForumPage from "../pages/ForumPage";
-import CategoryPage from "../pages/CategoryPage";
-import ProfilePage from "../pages/ProfilePage";
-import LoginPage from "../pages/LoginPage"
-import RegisterPage from "../pages/RegisterPage"
 import { getAuth } from "firebase/auth";
 const routes = [
   {
     path: "/thread/:id",
-    component: ThreadsShow,
+    component: () => import('../pages/ThreadsShow'),
     props: true,
     name: "ThreadShow", meta: {
       requiresAuth: true
     }
   },
   {
-    path: "/forum/:id", component: ForumPage, props: true, name: "ForumPage", meta: {
+    path: "/forum/:id", component: () => import('../pages/ForumPage'), props: true, name: "ForumPage", meta: {
       requiresAuth: true
     }
   },
   {
     path: "/category/:id",
-    component: CategoryPage,
+    component: () => import('../pages/CategoryPage'),
     props: true,
     name: "CategoryPage",
     meta: {
       requiresAuth: true
     }
   },
-  { path: "/:pathMatch(.*)*", component: NotFound, name: "NotFound" },
+  { path: "/:pathMatch(.*)*", component: () => import('../pages/NotFound'), name: "NotFound" },
   {
-    path: "/me", name: "ProfilePage", component: ProfilePage, meta: {
+    path: "/me", name: "ProfilePage", component: () => import('../pages/ProfilePage'), meta: {
       requiresAuth: true
     }
   },
   {
     path: "/login",
     name: "Login",
-    component: LoginPage,
+    component: () => import('../pages/LoginPage'),
   },
   {
     path: '/register',
     name: 'Register',
-    component: RegisterPage
+    component: () => import('../pages/RegisterPage')
   },
-  { path: "/", component: HomePage, name: "HomePage" },
+  { path: "/", component: () => import('../pages/HomePage'), name: "HomePage" },
 ];
 
 const router = createRouter({
